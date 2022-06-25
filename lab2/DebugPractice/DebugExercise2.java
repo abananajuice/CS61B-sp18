@@ -7,12 +7,12 @@ public class DebugExercise2 {
       * This function may have a bug, but if it does, you should find it
       * by stepping over, not into. */
     public static int max(int a, int b) {
-        int w = (b - a) >> 31;
+        boolean w = (b - a) > 0;
         /* If you're stepping into this function, click the
            step out button because you're not going to learn anything. */
-        int z = ~(b - a) >> 31;
+        boolean z = ~(b - a) > 0;
 
-        int max = b & w | a & z;
+        int max = (w)? b :a;
         return max;
     }
 
@@ -24,17 +24,7 @@ public class DebugExercise2 {
         int x = a, y = b;
         /* If you're stepping into this function, click the
            step out button because you're not going to learn anything. */
-        int xor, and, temp;
-        and = x & y;
-        xor = x ^ y;
-
-        while (and != 0) {
-            and <<= 1;
-            temp = xor ^ and;
-            and &= xor;
-            xor = temp;
-        }
-        return xor;
+        return a+b;
     }
 
     /** Returns a new array where entry i is the max of
@@ -60,7 +50,7 @@ public class DebugExercise2 {
         int i = 0;
         int sum = 0;
         while (i < x.length) {
-            sum = sum + add(sum, x[i]);
+            sum = add(sum, x[i]);
             i = i + 1;
         }
         return sum;
