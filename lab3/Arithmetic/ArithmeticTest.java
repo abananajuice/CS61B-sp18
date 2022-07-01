@@ -5,8 +5,9 @@ public class ArithmeticTest {
 
     /** Performs a few arbitrary tests to see if the product method is correct */
 
-    @Test 
+    @Test
     public void testProduct() {
+        // all methods test must be non-static
         /* assertEquals for comparison of ints takes two arguments:
         assertEquals(expected, actual).
         if it is false, then the assertion will be false, and this test will fail.
@@ -29,7 +30,8 @@ public class ArithmeticTest {
     }
 
     /* Run the unit tests in this file. */
-    public static void main(String... args) {        
-        jh61b.junit.TestRunner.runTests("all", ArithmeticTest.class);
+    public static void main(String... args) {
+        // decide whether display all message by modify the mode
+        jh61b.junit.TestRunner.runTests("failed", ArithmeticTest.class);
     }
 }
