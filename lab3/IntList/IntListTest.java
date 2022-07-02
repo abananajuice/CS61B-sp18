@@ -65,9 +65,25 @@ public class IntListTest {
         assertEquals(exp, IntList.catenate(A, B));
         assertEquals(IntList.of(1, 2, 3), A);
     }
+    //Test reverse method
+    @Test
+    public void  testreverse(){
+        IntList testList_1 = IntList.of(0, 1, 2, 3);
+        IntList expect_1 = IntList.of(3,2,1,0);
+        IntList result = IntList.reverse(testList_1);
 
+        assertEquals(expect_1,result);
+        IntList unexpect = IntList.of(0,1,2,3);
+        assertNotEquals(unexpect,result);
+
+        IntList testList_2 = IntList.of();
+        assertEquals(null,IntList.reverse(testList_2));
+    }
     /** If you're running this from the command line, you'll need
       * to add a main method. See ArithmeticTest.java for an
       * example. */
-
+    public static void main(String... args) {
+        // decide whether display all message by modify the mode
+        jh61b.junit.TestRunner.runTests("failed", IntList.class);
+    }
 }
