@@ -1,9 +1,11 @@
+
 public class ArrayDeque<T> {
     private T[] items;
     private int length;
     private  int size;
     private int nextfirst;
     private int nextlast;
+
 
 
     public ArrayDeque(){
@@ -13,9 +15,11 @@ public class ArrayDeque<T> {
         this.nextfirst = 10;
         this.nextlast = 11;
     }
+
     private void resize(int capacity){
         int start = this.nextfirst==this.size?0:this.nextfirst+1;
         int end = this.nextlast==0?this.size:this.nextlast-1;
+
         T[] newitems = (T []) new Object[capacity];
         if(start<=end){
             System.arraycopy(items, start, newitems, 0, start-end+1);
@@ -35,6 +39,8 @@ public class ArrayDeque<T> {
         }
 
     }
+
+
     public void addFirst(T item){
         if(this.size==this.length){
             resize(items.length*2);
@@ -45,6 +51,7 @@ public class ArrayDeque<T> {
         this.nextfirst = this.nextfirst==0?this.length-1:this.nextfirst-1;
 
     }
+
     public void addLast(T item){
         if(this.size==this.length){
             resize(items.length*2);
@@ -54,12 +61,15 @@ public class ArrayDeque<T> {
         this.size +=1;
         this.nextlast = (this.nextlast+1)%this.length;
     }
+
     public boolean isEmpty(){
         return size==0;
     }
+
     public int size(){
         return size;
     }
+
     public void printDeque(){
         int index=this.nextfirst+1;
         for(int i=0;i<size;i++){
@@ -67,8 +77,10 @@ public class ArrayDeque<T> {
             index = index==this.length-1?0:index+1;
         }
     }
+
+
     public T removeFirst(){
-        if(size==0) {
+        if(size!=0) {
             this.nextfirst = this.nextfirst==this.length-1?0:this.nextfirst+1 ;
             T tmp = items[this.nextfirst];
             items[this.nextfirst ] = null;
@@ -78,8 +90,10 @@ public class ArrayDeque<T> {
         }
         return null;
     }
+
+
     public T removeLast(){
-        if(size==0) {
+        if(size!=0) {
             this.nextlast = this.nextlast==0?this.length-1:this.nextlast-1;
             T tmp = items[this.nextlast];
             items[nextlast] = null;
@@ -89,6 +103,7 @@ public class ArrayDeque<T> {
         }
         return null;
     }
+
     public T get(int index){
         if(index<size){
             return items[(index+this.nextfirst+1)%this.length];
