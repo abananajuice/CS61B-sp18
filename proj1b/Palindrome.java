@@ -1,5 +1,6 @@
 public class Palindrome {
-    public Deque wordToDeque(String word){
+    // let Deque's items be character type.
+    public Deque<Character> wordToDeque(String word){
         Deque<Character> res = new ArrayDeque<>();
         for(int i =0;i<word.length();i++){
             // get ith char from string.From CSDN;
@@ -13,7 +14,7 @@ public class Palindrome {
         return isPalindromeHelper(wordDeque);
 
     }
-    private boolean isPalindromeHelper(Deque word){
+    private boolean isPalindromeHelper(Deque<Character> word){
         // use <=1 to make function proper to odd length string.
         if(word.size()<=1){
             return true;
