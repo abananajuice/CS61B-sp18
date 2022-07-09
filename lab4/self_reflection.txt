@@ -4,15 +4,16 @@ ArrayDeque:
 
 Q: Give an example of at least one idea from the staff solution that would have made your solution better (if any).
 
-A: 
+A:use balance() method to reduce the memory use.But it also have some bug.
 
 Q: What's something you felt proud of in your code, if anything?
 
-A:
+A:My code have less bugs when I edited first time,
 
 Q: What's something that was particularly inelegant in your code, if anything?
 
-A:
+A:when i use "nextfist and nextlast",the resize method become ugly.There are many brief "if" statement
+EP."this.nextfirst = this.nextfirst==0?this.length-1:this.nextfirst-1";
 
 Q: What did you learn by talking to your partner about writing ArrayDeque?
 
@@ -24,7 +25,7 @@ A:
 
 Q: If you wrote ArrayDeque again, what would you do differently, if anything?
 
-A:
+A:enhance the resize and balance method.
 
 -----
 
@@ -32,7 +33,7 @@ LinkedListDeque:
 
 Q: Give an example of at least one idea from the staff solution that would have made your solution better (if any).
 
-A: 
+A:use recursion and help method to instead iteration.
 
 Q: What's something you felt proud of in your code, if anything?
 

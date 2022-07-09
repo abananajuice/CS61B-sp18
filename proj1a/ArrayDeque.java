@@ -28,14 +28,29 @@ public class ArrayDeque<T> {
             System.arraycopy(items,start,newitems,0,size-start);
             System.arraycopy(items,0,newitems,size-start,start);
         }
-        this.nextfirst = 0;
-        this.nextlast = this.size+1;
+        this.nextfirst = capacity-1;
+        this.nextlast = this.size;
         this.length = capacity;
         items = newitems;
     }
     private void balance(){
         if(((double)this.size/this.length<0.25)&(this.length>20)) {
-            resize(this.length / 2);
+            int start = this.nextfirst==this.size?0:this.nextfirst+1;
+            int end = this.nextlast==0?this.size:this.nextlast-1;
+            int newlength = this.length/2;
+
+            T[] newitems = (T []) new Object[newlength];
+            if(start<=end){//bug at here
+                System.arraycopy(items, start, newitems, 0, start-end+1);
+            }
+            else{
+                System.arraycopy(items,start,newitems,0,size-start);
+                System.arraycopy(items,0,newitems,size-start,start);
+            }
+            this.nextfirst = newlength-1;
+            this.nextlast = this.size;
+            this.length = this.length/2;
+            items = newitems;
         }
 
     }
