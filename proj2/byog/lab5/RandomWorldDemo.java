@@ -37,7 +37,7 @@ public class RandomWorldDemo {
     private static TETile randomTile() {
         int tileNum = RANDOM.nextInt(3);
         switch (tileNum) {
-            case 0: return Tileset.WALL;
+            case 0: return Tileset.MOUNTAIN;
             case 1: return Tileset.FLOWER;
             case 2: return Tileset.NOTHING;
             default: return Tileset.NOTHING;
@@ -47,6 +47,7 @@ public class RandomWorldDemo {
     public static void main(String[] args) {
         TERenderer ter = new TERenderer();
         ter.initialize(WIDTH, HEIGHT);
+
 
         TETile[][] randomTiles = new TETile[WIDTH][HEIGHT];
         fillWithRandomTiles(randomTiles);
