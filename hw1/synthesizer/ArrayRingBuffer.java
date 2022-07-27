@@ -1,6 +1,7 @@
 package synthesizer;
 // TODO: Make sure to make this class a part of the synthesizer package
 // package <package name>;
+
 import java.util.Iterator;
 
 //TODO: Make sure to make this class and all of its methods public
@@ -22,7 +23,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         //       this.capacity should be set appropriately. Note that the local variable
         //       here shadows the field we inherit from AbstractBoundedQueue, so
         //       you'll need to use this.capacity to set the capacity.
-        rb = (T []) new Object[capacity];
+        rb = (T[]) new Object[capacity];
         first = 0;
         last = 0;
         fillCount = 0;
@@ -36,11 +37,11 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
      */
     public void enqueue(T x) {
         // TODO: Enqueue the item. Don't forget to increase fillCount and update last.
-        if(isFull()){
+        if (isFull()) {
             throw new RuntimeException("Ring Buffer Overflow.");
         }
         rb[last] = x;
-        last = last == 0 ? capacity -1 : last - 1;
+        last = last == 0 ? capacity - 1 : last - 1;
         fillCount += 1;
     }
 
@@ -53,7 +54,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         // TODO: Dequeue the first item. Don't forget to decrease fillCount and update
         // just change index (value of first) but did not delete the value in array
         // until the new value was write to that position.
-        if (isEmpty()){
+        if (isEmpty()) {
             throw new RuntimeException("Ring Buffer Underflow");
         }
         int ind = first;
@@ -71,30 +72,32 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
     }
 
     // TODO: When you get to part 5, implement the needed code to support iteration.
-    public Iterator iterator(){
+    public Iterator iterator() {
         return new ArrayRingBufferIterator();
 
     }
-    private class ArrayRingBufferIterator<T> implements Iterator{
 
-            private int wizpos;
-            private int count;
-            public ArrayRingBufferIterator(){
-                wizpos = first;
-                count = 0;
-            }
+    private class ArrayRingBufferIterator<T> implements Iterator {
 
-            public boolean hasNext(){
-                return count < fillCount;
-            }
+        private int wizpos;
+        private int count;
 
-            public T next(){
-                T res = (T) rb[wizpos];
-                wizpos = wizpos==0 ? capacity-1 : wizpos-1;
-                count += 1;
+        public ArrayRingBufferIterator() {
+            wizpos = first;
+            count = 0;
+        }
 
-                return res;
-            }
+        public boolean hasNext() {
+            return count < fillCount;
+        }
+
+        public T next() {
+            T res = (T) rb[wizpos];
+            wizpos = wizpos == 0 ? capacity - 1 : wizpos - 1;
+            count += 1;
+
+            return res;
+        }
 
     }
 }
