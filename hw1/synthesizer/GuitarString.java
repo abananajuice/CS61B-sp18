@@ -1,8 +1,6 @@
 package synthesizer;// TODO: Make sure to make this class a part of the synthesizer package
 //package <package name>;
 
-import org.omg.CORBA.MARSHAL;
-
 //Make sure this class is public
 public class GuitarString {
     /** Constants. Do not change. In case you're curious, the keyword final means
