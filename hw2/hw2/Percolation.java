@@ -69,8 +69,10 @@ public class Percolation {
     private void union(int x,int y){
         int a = x-y;
         if(Math.abs(a)==1){
-            grid.union(x,y);
-            return;
+            if((x/scale)==(y/scale)) {
+                grid.union(x, y);
+                return;
+            }
         }
         else if (Math.abs(a) == scale) {
             grid.union(x,y);
