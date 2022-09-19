@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 import java.util.ArrayList;
 
 public class Percolation {
-    private static int scale;
+    private int scale;
     private WeightedQuickUnionUF grid;
     private boolean[][] grid_matrix;
     // crteate another grid to avoid back wash.

@@ -18,7 +18,7 @@ public class PercolationStats {
         result = new double[T];
 
         // T times trials
-        for (int times = 0; times < trial; T++) {
+        for (int times = 0; times < trial; times++) {
             StdRandom.setSeed(times);
             Percolation newgrid = pf.make(N);
             while (!newgrid.percolates()) {
@@ -52,5 +52,13 @@ public class PercolationStats {
     public double confidenceHigh()                                 // high endpoint of 95% confidence interval
     {
         return mean() + (1.96 * stddev()) / (Math.sqrt(trial));
+    }
+
+    public static void main(String[] args){
+        PercolationFactory pf = new PercolationFactory();
+        PercolationStats p = new PercolationStats(400,20,pf);
+
+        System.out.println(p.confidenceLow());
+        System.out.println(p.confidenceHigh());
     }
 }
