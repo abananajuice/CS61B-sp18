@@ -4,10 +4,10 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- *  A hash table-backed Map implementation. Provides amortized constant time
- *  access to elements via get(), remove(), and put() in the best case.
+ * A hash table-backed Map implementation. Provides amortized constant time
+ * access to elements via get(), remove(), and put() in the best case.
  *
- *  @author Your name here
+ * @author Your name here
  */
 public class MyHashMap<K, V> implements Map61B<K, V> {
 
@@ -35,9 +35,10 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
         }
     }
 
-    /** Computes the hash function of the given key. Consists of
-     *  computing the hashcode, followed by modding by the number of buckets.
-     *  To handle negative numbers properly, uses floorMod instead of %.
+    /**
+     * Computes the hash function of the given key. Consists of
+     * computing the hashcode, followed by modding by the number of buckets.
+     * To handle negative numbers properly, uses floorMod instead of %.
      */
     private int hash(K key) {
         if (key == null) {
@@ -54,7 +55,7 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
     @Override
     // get help from https://blog.csdn.net/qq_45698833/article/details/115436385
     public V get(K key) {
-        if(key == null){
+        if (key == null) {
             throw new IllegalArgumentException("argument to get() is null");
         }
         int index = hash(key);
@@ -64,32 +65,33 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
     /* Associates the specified value with the specified key in this map. */
     @Override
     public void put(K key, V value) {
-        if(key == null){
+        if (key == null) {
             throw new IllegalArgumentException("argument to get() is null");
         }
-        if(loadFactor() > MAX_LF){
-            resize(2* buckets.length);
+        if (loadFactor() > MAX_LF) {
+            resize(2 * buckets.length);
         }
 
-        if(!containsKey(key)){
-            this.size ++;
+        if (!containsKey(key)) {
+            this.size++;
         }
-        buckets[hash(key)].put(key,value);
+        buckets[hash(key)].put(key, value);
     }
 
-    private void resize(int n){
+    private void resize(int n) {
         ArrayMap<K, V>[] oldbuckets = buckets;
-        buckets = (ArrayMap<K,V>[])new ArrayMap[n];
+        buckets = (ArrayMap<K, V>[]) new ArrayMap[n];
         this.clear();  //注意清除,并为每个格子创建一个array list
 
-        for(int i=0;i < oldbuckets.length;i++){
-            for(K key:oldbuckets[i].keySet()){
-                put(key,oldbuckets[i].get(key));
+        for (int i = 0; i < oldbuckets.length; i++) {
+            for (K key : oldbuckets[i].keySet()) {
+                put(key, oldbuckets[i].get(key));
             }
         }
 
 
     }
+
     /* Returns the number of key-value mappings in this map. */
     @Override
     public int size() {
