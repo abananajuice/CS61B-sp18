@@ -150,10 +150,12 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
      **/
     @Override
     public V remove(K key, V value) {
-        if(value == get(key)){
-            return remove(key);
-        };
-        return null;
+        throw new UnsupportedOperationException();
+
+//        if(value == get(key)){
+//            return remove(key);
+//        };
+//        return null;
     }
 
     @Override

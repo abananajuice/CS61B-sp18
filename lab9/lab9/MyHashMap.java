@@ -52,20 +52,48 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
      * map contains no mapping for the key.
      */
     @Override
+    // get help from https://blog.csdn.net/qq_45698833/article/details/115436385
     public V get(K key) {
-        throw new UnsupportedOperationException();
+        if(key == null){
+            throw new IllegalArgumentException("argument to get() is null");
+        }
+        int index = hash(key);
+        return buckets[index].get(key);
     }
 
     /* Associates the specified value with the specified key in this map. */
     @Override
     public void put(K key, V value) {
-        throw new UnsupportedOperationException();
+        if(key == null){
+            throw new IllegalArgumentException("argument to get() is null");
+        }
+        if(loadFactor() > MAX_LF){
+            resize(2* buckets.length);
+        }
+
+        if(!containsKey(key)){
+            this.size ++;
+        }
+        buckets[hash(key)].put(key,value);
     }
 
+    private void resize(int n){
+        ArrayMap<K, V>[] oldbuckets = buckets;
+        buckets = (ArrayMap<K,V>[])new ArrayMap[n];
+        this.clear();  //注意清除,并为每个格子创建一个array list
+
+        for(int i=0;i < oldbuckets.length;i++){
+            for(K key:oldbuckets[i].keySet()){
+                put(key,oldbuckets[i].get(key));
+            }
+        }
+
+
+    }
     /* Returns the number of key-value mappings in this map. */
     @Override
     public int size() {
-        throw new UnsupportedOperationException();
+        return this.size;
     }
 
     //////////////// EVERYTHING BELOW THIS LINE IS OPTIONAL ////////////////
