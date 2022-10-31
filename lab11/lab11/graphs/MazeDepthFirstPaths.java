@@ -5,8 +5,8 @@ package lab11.graphs;
  */
 public class MazeDepthFirstPaths extends MazeExplorer {
     /* Inherits public fields:
-    public int[] distTo;
-    public int[] edgeTo;
+    public int[] distTo  ;
+    public int[] edgeTo  边v-w第一次访问任意w时，将edgeTo[w]设为v来记住这条路径。;
     public boolean[] marked;
     */
     private int s;

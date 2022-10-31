@@ -14,6 +14,7 @@ public class TrivialMazeExplorer extends MazeExplorer {
         for (int i = 0; i < maze.V(); i += 1) {
             distTo[i] = i;
             marked[i] = true;
+            // draw on the screen
             announce();
         }
     }
