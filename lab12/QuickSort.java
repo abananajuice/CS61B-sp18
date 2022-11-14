@@ -46,17 +46,17 @@ public class QuickSort {
      * @param greater  An empty Queue. When the function completes, this queue will contain
      *                 all of the items in unsorted that are greater than the given pivot.
      */
-    private static  <Item extends Comparable> void partition(
+    private static <Item extends Comparable> void partition(
             Queue<Item> unsorted, Item pivot,
             Queue<Item> less, Queue<Item> equal, Queue<Item> greater) {
         // Your code here!
-        if(unsorted.isEmpty()) return;
+        if (unsorted.isEmpty()) return;
 
         while (!unsorted.isEmpty()) {
             Item temp = unsorted.dequeue();
 
-            if(pivot.compareTo(temp)>0) less.enqueue(temp);
-            else if(pivot.compareTo(temp)<0) greater.enqueue(temp);
+            if (pivot.compareTo(temp) > 0) less.enqueue(temp);
+            else if (pivot.compareTo(temp) < 0) greater.enqueue(temp);
             else equal.enqueue(temp);
 
         }
@@ -71,20 +71,20 @@ public class QuickSort {
             Queue<Item> items) {
         // Your code here!
         // 当处理泛化类型时必须要确保 队列中的元素时可比较的；因此在定义函数之前加入<Item extends Comparable>
-        if(items.size()<=1) return items;
+        if (items.size() <= 1) return items;
 
 
         Item pivot = getRandomItem(items);
-         Queue<Item> less = new Queue<Item>(),equal = new Queue<Item>(),greater= new Queue<Item>();
+        Queue<Item> less = new Queue<Item>(), equal = new Queue<Item>(), greater = new Queue<Item>();
 
         // 因为是静态方法，可以传递下去；静态方法可以访问静态数据成员，并可以更改静态数据成员的值。
-        partition(items,pivot,less,equal,greater);
+        partition(items, pivot, less, equal, greater);
 
         less = quickSort(less);
         greater = quickSort(greater);
 
-        Queue<Item> res = catenate(less,equal);
-        res = catenate(res,greater);
+        Queue<Item> res = catenate(less, equal);
+        res = catenate(res, greater);
         return res;
 
     }
