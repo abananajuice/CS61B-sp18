@@ -1,0 +1,7 @@
+- Remove the search node with minimum priority. Let’s call this node X.If it is the goal node, then we’re done.
+- Otherwise, for each neighbor of X’s world state,create a new search node that obeys the description above and insert it into the priority queue.
+
+We can think of each search node as having a priority equal to the sum of (the number of moves made to reach this world state from the initial state + the WorldState’s estimatedDistanceToGoal).
+
+(distance so far + estimated distance to goal) 当前点距离初始点和目标点距离之和作为优先级
+
