@@ -80,6 +80,7 @@ public class MergeSort {
         // Your code here!
         Queue<Queue<Item>> ress = makeSingleItemQueues(items);
         while (ress.size() != 1) {
+            // 自底向上的归并排序；从最小链表的开始并将合并后的值放到链表末尾，最终形成一个链表
             ress.enqueue(mergeSortedQueues(ress.dequeue(), ress.dequeue()));
         }
         return ress.dequeue();
