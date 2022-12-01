@@ -1,3 +1,5 @@
+import com.sun.deploy.util.StringUtils;
+
 /**
  * Class for doing Radix sort
  *
@@ -17,7 +19,16 @@ public class RadixSort {
      */
     public static String[] sort(String[] asciis) {
         // TODO: Implement LSD Sort
-        return null;
+        // find longest string
+        int max = 0;
+        for(String i : asciis) max = max > i.length() ? max:i.length();
+
+        for(int j = max -1;j>=0;j--){
+            asciis = sortHelperLSD(asciis,j);
+        }
+
+
+        return asciis;
     }
 
     /**
@@ -26,9 +37,30 @@ public class RadixSort {
      * @param asciis Input array of Strings
      * @param index The position to sort the Strings on.
      */
-    private static void sortHelperLSD(String[] asciis, int index) {
+    private static String[] sortHelperLSD(String[] asciis, int index) {
         // Optional LSD helper method for required LSD radix sort
-        return;
+        int[] counts = new int[256];
+
+        for(String i :asciis){
+            int s_ascii = (int) i.charAt(index);
+            counts[s_ascii]++;
+        }
+
+        int[] starts = new int[256];
+        int pos = 0;
+        for (int i = 0; i < starts.length; i += 1) {
+            starts[i] = pos;
+            pos += counts[i];
+        }
+
+        String[] sorted = new String[asciis.length];
+        for(String i:asciis){
+             int place = starts[(int) i.charAt(index)]++;
+             sorted[place] = i;
+        }
+
+
+        return sorted;
     }
 
     /**
@@ -43,6 +75,12 @@ public class RadixSort {
      **/
     private static void sortHelperMSD(String[] asciis, int start, int end, int index) {
         // Optional MSD helper method for optional MSD radix sort
+        return;
+    }
+
+    public static void main(String[] args){
+        String[] someString = {"852","258","369","957","521","251"};
+        String[] sorted = sort(someString);
         return;
     }
 }
