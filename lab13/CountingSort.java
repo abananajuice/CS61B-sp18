@@ -2,7 +2,6 @@
  * Class with 2 ways of doing Counting sort, one naive way and one "better" way
  *
  * @author Akhil Batra, Alexander Hwang
- *
  **/
 public class CountingSort {
     /**
@@ -91,8 +90,7 @@ public class CountingSort {
         for (int i : arr) {
             if (i >= 0) {
                 counts[i]++;
-            }
-            else {
+            } else {
                 counts_neg[Math.abs(i)]++;
             }
         }
@@ -117,12 +115,11 @@ public class CountingSort {
         for (int i = 0; i < arr.length; i += 1) {
             int item = arr[i];
             if (item < 0) {
-                item = item * (-1) ;
+                item = item * (-1);
                 int place = starts[item];
                 sorted[place] = item;
                 starts[item] += 1;
-            }
-            else {
+            } else {
                 int place = starts[item];
                 sorted[place] = item;
                 starts[item] += 1;
